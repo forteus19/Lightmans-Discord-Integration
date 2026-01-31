@@ -1,5 +1,6 @@
 package io.github.lightman314.lightmansdiscord;
 
+import dev.vuis.ldc.erroralerts.ErrorCallbackAppender;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
@@ -52,7 +53,8 @@ public class LightmansDiscordIntegration
         	VanishModCompat.init();
         	LOGGER.info("Vanish mod detected. Vanish mod compatibility enabled.");
         }
-       
+
+		ErrorCallbackAppender.init();
     }
     
     private void serverSetup(FMLDedicatedServerSetupEvent event) { MessageManager.collectEntries(); }

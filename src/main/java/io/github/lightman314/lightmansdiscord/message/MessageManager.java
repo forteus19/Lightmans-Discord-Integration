@@ -49,6 +49,7 @@ public final class MessageManager {
 
 	//Console bot messages
 	public static final MessageEntry M_CONSOLEBOT_READY = MessageEntry.create(LOCAL_ENTRIES, "consolebot_ready", "Message sent when the console bot is ready for commands.", "Console Bot is ready!");
+	public static final MessageEntry M_CONSOLEBOT_ERROR = MessageEntry.create(LOCAL_ENTRIES, "consolebot_error", "Message sent when an error in the logs matches the configured keywords", "Matched error: {message}", "message");
 	
 	//Boot/stop messages
 	public static final MessageEntry M_SERVER_BOOT = MessageEntry.create(LOCAL_ENTRIES, "chat_server_boot", "Message sent when the server starts booting, and the bot is loaded.", "Server is booting!");

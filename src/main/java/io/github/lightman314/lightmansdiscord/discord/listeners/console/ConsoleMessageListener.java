@@ -21,7 +21,8 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
-public class ConsoleMessageListener extends SafeSingleChannelListener implements CommandSource{
+public class ConsoleMessageListener extends SafeSingleChannelListener implements CommandSource {
+	public static ConsoleMessageListener instance = null;
 
 	MinecraftServer server = null;
 	protected final void checkForServer() { if(this.server == null) this.server = ServerLifecycleHooks.getCurrentServer(); }
@@ -32,6 +33,12 @@ public class ConsoleMessageListener extends SafeSingleChannelListener implements
 	public ConsoleMessageListener(Supplier<String> consoleChannel)
 	{
 		super(consoleChannel);
+
+		if (instance != null) {
+			throw new IllegalStateException("ConsoleMessageListener already created");
+		}
+		instance = this;
+
 		if(getMode().acceptCommands)
 			this.sendMessage(MessageManager.M_CONSOLEBOT_READY.get());
 		this.createLogAppender();

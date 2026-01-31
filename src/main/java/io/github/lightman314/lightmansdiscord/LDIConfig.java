@@ -22,6 +22,7 @@ public class LDIConfig {
 		//Console Config
 		public final ForgeConfigSpec.ConfigValue<String> consoleChannel;
 		public final ForgeConfigSpec.ConfigValue<String> consoleCommandPrefix;
+		public final ForgeConfigSpec.ConfigValue<List<? extends String>> errorAlertKeywords;
 		//Chat Config
 		public final ForgeConfigSpec.ConfigValue<String> chatChannel;
 		public final ForgeConfigSpec.BooleanValue chatAllowPingEveryone;
@@ -81,6 +82,8 @@ public class LDIConfig {
 					.comment("The prefix required to execute console commands.",
 							"Leave empty to have all text inputs be processed as a command.")
 					.define("prefix", "/");
+			this.errorAlertKeywords = builder
+					.defineList("errorAlertKeywords", new ArrayList<>(), o -> o instanceof String);
 			
 			builder.pop();
 			
