@@ -22,7 +22,7 @@ public class ErrorCallbackAppender extends AbstractAppender {
 
 	@Override
 	public void append(LogEvent event) {
-		if (event.getLevel() != Level.ERROR) {
+		if (!LDIConfig.SERVER.errorAlertLevels.get().contains(event.getLevel().toString())) {
 			return;
 		}
 
@@ -43,7 +43,7 @@ public class ErrorCallbackAppender extends AbstractAppender {
 		appender.start();
 		config.addAppender(appender);
 
-		config.getRootLogger().addAppender(appender, Level.ERROR, null);
+		config.getRootLogger().addAppender(appender, Level.ALL, null);
 		ctx.updateLoggers();
 	}
 }
